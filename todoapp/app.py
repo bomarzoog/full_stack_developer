@@ -27,10 +27,10 @@ data1 = Todo.query.all()
 print (data1)
 
 
-@app.route('/')
-def index():
-    return render_template('index.html', data=Todo.query.all())
+#@app.route('/')
+#def index():
+#    return render_template('index.html', data=Todo.query.all())
 
 
-if __name__=="__main__":
+#if __name__=="__main__":
    app.run(host="0.0.0.0")
