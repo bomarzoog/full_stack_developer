@@ -22,6 +22,10 @@ class Todo(db.Model):
 
 db.create_all()
     
+data1 = Todo.query.all()
+
+print (data1)
+
 
 @app.route('/')
 def index():
