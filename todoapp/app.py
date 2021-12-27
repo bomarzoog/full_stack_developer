@@ -24,7 +24,7 @@ db.create_all()
     
 data1 = Todo.query.all()
 
-print (data1)
+print (data1[1].description)
 
 
 #@app.route('/')
