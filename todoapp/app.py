@@ -14,8 +14,8 @@ db = SQLAlchemy(app)
 #Create db table 
 class Todo(db.Model):
     __tablename__ = 'todos'
-    id = db.Columon(db.Integer,primary_key=True)
-    description = db.Columon(db.String(), nullable=False)
+    id = db.Column(db.Integer,primary_key=True)
+    description = db.Column(db.String(), nullable=False)
 
     def __repr__(self):
         return f'<Todo {self.id} {self.description}'
