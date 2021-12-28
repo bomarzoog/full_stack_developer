@@ -28,11 +28,13 @@ class Todo(db.Model):
 @app.route('/todo/create', methods=['POST'])
 def create_todo():
     error = False
+    body = {}
     try:
         description = request.get_json()['description']
         todo =Todo(description=description)
         db.session.add(todo)
         db.session.commit()
+        body['description'] = todo.description
     except:
         db.session.rollback()
         error=True
@@ -41,9 +43,7 @@ def create_todo():
         db.session.close()
     
     if not error:
-        return jsonify({
-        'description':todo.description
-        })
+        return jsonify(body)
 
 @app.route('/')
 def index():
