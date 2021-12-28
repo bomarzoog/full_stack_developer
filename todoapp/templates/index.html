@@ -19,7 +19,7 @@
             <div>
                 <input type="submit" id="submit" value="Create"/>
             </div>
-            <div id="error" class="hidden"> Something went wrong!</div>
+            <div id="error" class="hidden" style="display:none;"> Something went wrong!</div>
         </form>
 
         <ul id="todos">
@@ -27,6 +27,7 @@
             <li>{{ d.description }}</li>
             {% endfor %}
         </ul>
+
         <script>
             document.getElementById('form').onsubmit = function (e) {
                 e.preventDefault();
@@ -50,7 +51,7 @@
                 document.getElementById('error').className = 'hidden';
             })
 
-            .catch(function{
+            .catch(function(){
                 document.getElementById('error').className = '';
             })
 
