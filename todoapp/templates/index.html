@@ -3,13 +3,24 @@
         <title>Todo App</title>
     </head>
     <body>
+
+        <form action="/todo/create" method="POST">
+            <div>
+                <label for="name">Create a To-Do item</label>
+            </div>
+            <div>
+                <input type="text" id= "name" name="description">
+            </div>
+            <div>
+                <input type="submit" id="submit" value="Create"/>
+            </div>
+        </form>
+
         <ul>
             {% for d in data%}
             <li>{{ d.description }}</li>
             {% endfor %}
         </ul>
-
-
 
 
     </body>
