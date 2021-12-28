@@ -29,7 +29,7 @@
         </ul>
 
         <script>
-            document.getElementById('form').onsubmit = function (e) {
+            document.getElementById('form').onsubmit = function(e) {
                 e.preventDefault();
                 fetch('/todo/create', {
                     method: 'POST',
@@ -37,7 +37,7 @@
                         'description': document.getElementById('description').value
                     }),
                     headers: {
-                        'Content-Type: 'application/json' 
+                        'Content-Type': 'application/json' 
                     }
             })
             .then(function (response){
@@ -58,7 +58,8 @@
 
         }
         </script>
-
+        
+        
 
     </body>
 </html>
