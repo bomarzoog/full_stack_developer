@@ -34,8 +34,6 @@
         </ul>
 
         <script>
-
-            const checkboxes = document.querySelectorAll(".check-completed")
             document.getElementById('form').onsubmit = function(e) {
                 e.preventDefault();
                 fetch('/todo/create', {
