@@ -59,7 +59,7 @@ def check_completed(todo_id):
         db.session.commit()
     except:
         db.session.rollback()
-    finally:ß
+    finally:
         db.session.close()
     return redirect(url_for('index'))
     
