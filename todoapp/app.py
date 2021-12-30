@@ -1,5 +1,6 @@
-from  flask import Flask, render_template, request, redirect, url_for, jsonify
+from  flask import Flask, render_template, request, redirect, url_for, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import sys
 
 
@@ -8,9 +9,10 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///db2'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 'postgresql:///db2'
 
-
 #Map flask app to database
 db = SQLAlchemy(app)
+
+migrate = Migrate(app,db)
 
 #Create db table 
 class Todo(db.Model):
@@ -42,7 +44,9 @@ def create_todo():
     finally:
         db.session.close()
     
-    if not error:
+    if error:
+        abort(400)
+    else:
         return jsonify(body)
 
 @app.route('/')
