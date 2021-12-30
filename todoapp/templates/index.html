@@ -5,6 +5,11 @@
             .hidden {
                 display: none;
             }
+            ul {
+                list-style: none;
+                padding:0;
+                margin: 0;
+            }
         </style>
     </head>
     <body>
@@ -24,11 +29,13 @@
 
         <ul id="todos">
             {% for d in data%}
-            <li><input type="checkbox" {%if d.completed %} checked {% endif%}/> d.description </li>
+            <li><input class ='check-completed' type="checkbox" {%if d.completed %} checked {% endif %}/> {{d.description}} </li>
             {% endfor %}
         </ul>
 
         <script>
+
+            const checkboxes = document.querySelectorAll(".check-completed")
             document.getElementById('form').onsubmit = function(e) {
                 e.preventDefault();
                 fetch('/todo/create', {
