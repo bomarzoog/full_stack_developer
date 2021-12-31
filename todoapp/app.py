@@ -50,7 +50,7 @@ def create_todo():
     else:
         return jsonify(body)
 
-@app.route ('/todo/<todo_id>/check-completed', methods=['POST'])
+@app.route ('/todo/<todo_id>/set-completed', methods=['POST'])
 def check_completed(todo_id):
     try:
         completed = request.get_json()['completed']
