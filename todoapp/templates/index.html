@@ -63,6 +63,19 @@
                 const xButton = closeds[i];
                 xButton.onclick=function(e){
                     console.log('Event',e);
+                    const todoId = e.target.dataset['id']
+                    fetch('/todo/'+todoId+'/delete', {
+                        method: 'POST',
+                        body: JSON.stringify({ id :todoId}),
+                        headers: {'Content-Type':'application/json'}
+                    }
+                    .then(function(){
+                        document.getElementById('error').className='hidden';
+                    })
+                    .catch(function() {
+                        document.getElementById('error').className='';
+                    })
+                    
                 }
             }
             const checkboxes = document.querySelectorAll('.check-completed');
