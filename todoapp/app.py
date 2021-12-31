@@ -80,7 +80,7 @@ def delete(todo_id):
         db.session.close()
     
     print ('redirect happen!!!!!')      
-    return redirect(url_for('google')) 
+    return redirect(url_for('index')) 
 
 @app.route('/')
 def index():
