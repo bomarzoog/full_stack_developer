@@ -64,6 +64,10 @@ def check_completed(todo_id):
         db.session.close()
     return redirect(url_for('index'))
 
+@app.route('/google')
+def google:
+    redirect('www.google.com')
+
 @app.route ('/todo/<todo_id>/delete', methods=['POST'])
 def delete(todo_id):
     try:
@@ -76,7 +80,7 @@ def delete(todo_id):
         db.session.close()
     
     print ('redirect happen!!!!!')      
-    return redirect(url_for('index')) 
+    return redirect(url_for('google')) 
 
 @app.route('/')
 def index():
