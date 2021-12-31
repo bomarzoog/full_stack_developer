@@ -54,6 +54,7 @@ def create_todo():
 def check_completed(todo_id):
     try:
         completed = request.get_json()['completed']
+        print(completed)
         todo =Todo.query.get(todo_id)
         todo.completed = completed
         db.session.commit()
