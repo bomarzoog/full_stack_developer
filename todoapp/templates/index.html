@@ -55,11 +55,11 @@
 
         <script>
 
-            const closed =document.querySelectorAll('.closed')
+            const closeds =document.querySelectorAll('.closed')
             for (let i = 0; i<closed.length;i++){
 
-                cost x = closed[i];
-                x.Click=function(e){
+                cost xButton = closeds[i];
+                xButton.onClick=function(e){
                     console.log('Event',e)
                 }
             }
