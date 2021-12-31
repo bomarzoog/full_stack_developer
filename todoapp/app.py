@@ -67,7 +67,7 @@ def check_completed(todo_id):
 
 @app.route('/')
 def index():
-    return render_template('index.html', data=Todo.query.all() ) 
+    return render_template('index.html', data=Todo.query.order_by('id').all() ) 
 
 if __name__=="__main__":
    app.run(debug=True, host="0.0.0.0")
