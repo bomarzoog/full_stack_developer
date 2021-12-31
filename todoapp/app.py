@@ -7,7 +7,7 @@ import sys
 # Define flask app
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///db2'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = 'postgresql:///db2'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #Map flask app to database
 db = SQLAlchemy(app)
