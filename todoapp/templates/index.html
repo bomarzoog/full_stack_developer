@@ -14,7 +14,7 @@
             li {
                 clear: both;
             }
-            li button {
+            .closed {
                
                 border: none;
                 outline: none;
@@ -48,7 +48,7 @@
             <li><input class ='check-completed' type="checkbox" data-id = "{{d.id}}"{% if d.completed %} checked {%
                  endif %} />
                  {{d.description}} 
-                 <button class="closed">&cross;</button>
+                 <button class='closed'>&cross;</button>
             </li>
             {% endfor %}
         </ul>
