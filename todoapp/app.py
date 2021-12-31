@@ -67,7 +67,7 @@ def check_completed(todo_id):
 @app.route ('/todo/<todo_id>/delete', methods=['POST'])
 def delete(todo_id):
     try:
-        todo = todo.query.get(todo_id)
+        todo = Todo.query.get(todo_id)
         db.session.delete(todo)
         db.session.commit()
     except:
