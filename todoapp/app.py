@@ -65,7 +65,7 @@ def check_completed(todo_id):
     return redirect(url_for('index'))
 
 @app.route('/google')
-def google:
+def google():
     redirect('www.google.com')
 
 @app.route ('/todo/<todo_id>/delete', methods=['POST'])
