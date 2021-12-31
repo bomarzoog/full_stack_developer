@@ -42,8 +42,8 @@
 
         <ul id="todos">
             {% for d in data%}
-            <li><input class ='check-completed' type="checkbox" data-id = "{{d.id}}"{%if d.completed %} checked {%
-                 endif %}/>
+            <li><input class ='check-completed' type="checkbox" data-id = "{{d.id}}"{% if d.completed %} checked {%
+                 endif %} />
                  {{d.description}} 
                  <button>&cross;</button>
             </li>
