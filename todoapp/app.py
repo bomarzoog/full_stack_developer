@@ -74,7 +74,8 @@ def delete(todo_id):
         db.session.rollback()
     finally:
         db.session.close()
-        return redirect('/')        
+    return redirect(url_for('index')) 
+    print ('redirect happen!!!!!')      
 
 @app.route('/')
 def index():
