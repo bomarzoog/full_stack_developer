@@ -48,7 +48,7 @@
             <li><input class ='check-completed' type="checkbox" data-id = "{{d.id}}"{% if d.completed %} checked {%
                  endif %} />
                  {{d.description}} 
-                 <button class='closed'>&cross;</button>
+                 <button class ='closed'>&cross;</button>
             </li>
             {% endfor %}
         </ul>
@@ -56,12 +56,12 @@
         <script>
 
             const closeds =document.querySelectorAll('.closed')
-            console.log(closeds);
+            console.log(closeds[1]);
        
             for (let i = 0; i<closeds.length;i++){
 
                 cost xButton = closeds[i];
-                xButton.onClick=function(e){
+                xButton.onclick=function(e){
                     console.log('Event',e);
                 }
             }
