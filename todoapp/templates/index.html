@@ -77,14 +77,14 @@
                     })
                 }               
             }
-            const description1 = document.getElementById('description').value;
+            const description = document.getElementById('description').value;
             
             document.getElementById('form').onsubmit = function(e) {
                 e.preventDefault();
                 fetch('/todo/create', {
                     method: 'POST',
                     body: JSON.stringify({
-                        'description': description1
+                        'description': description
                     }),
                     headers: {
                         'Content-Type': 'application/json',
