@@ -64,11 +64,9 @@ def check_completed(todo_id):
         db.session.close()
     return redirect(url_for('index'))
 
-@app.route('/google')
-def google():
-    redirect('www.google.com')
 
-@app.route ('/todo/<todo_id>/delete', methods=['POST'])
+
+@app.route ('/todo/<todo_id>/delete', methods=['DELETE'])
 def delete(todo_id):
     try:
         todo = Todo.query.get(todo_id)
@@ -79,8 +77,7 @@ def delete(todo_id):
     finally:
         db.session.close()
     
-    print ('redirect happen!!!!!')      
-    return redirect(url_for('index')) 
+    return jsonify({'success': True })
 
 @app.route('/')
 def index():
