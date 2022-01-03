@@ -33,6 +33,14 @@
         </style>
     </head>
     <body>
+        <div class="list-wrapper">
+            <ul id="lists">
+                {% for list in lists%}
+                <li> {{ list.name }} </li>
+                {% endfor %}
+            </ul>
+        </div>
+
         <div class="todo-wrapper">
         <form id="form" >
             <div>
@@ -47,13 +55,7 @@
             <div id="error" class="hidden" style="display:none;"> Something went wrong!</div>
         </form>
         </div>
-        <div class="list-wrapper">
-        <ul id="lists">
-            {% for list in lists%}
-            <li> {{ list.name }} </li>
-            {% endfor %}
-        </ul>
-        </div>
+  
 
         <ul id="todos">
             {% for d in todos%}
