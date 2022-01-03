@@ -61,17 +61,19 @@
         <h3>TODO ITEMS</h3>
 
         <form id="form" >
-             <h4>{{active_list.name}}</h4>
+           
             <label for="description">Create Task:</label>
     
             <input type="text" id= "description" name="description">
             
             
             <input type="submit" id="submit" value="Create"/>
+
             
             <div id="error" class="hidden" style="display:none;"> Something went wrong!</div>
         </form>
-     
+        
+        <h4>{{active_list.name}}</h4>
   
 
         <ul id="todos">
