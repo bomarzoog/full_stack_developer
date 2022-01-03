@@ -132,6 +132,19 @@ def delete(todo_id):
     
     return jsonify({'success': True })
 
+@app.route ('/list/<list_id>/delete', methods=['DELETE'])
+def delete(list_id):
+    try:
+        todoList = TodoList.query.get(list_id)
+        db.session.delete(todoList)
+        db.session.commit()
+    except:
+        db.session.rollback()
+    finally:
+        db.session.close()
+    
+    return jsonify({'success': True })
+
 @app.route('/lists/<list_id>')
 def get_list_todos(list_id):
     lists = TodoList.query.order_by('id').all()
