@@ -59,7 +59,7 @@ def create_todo():
         return jsonify(body)
 
 @app.route('/list/create', methods=['POST'])
-def create_todo():
+def create_list():
     error = False
     body = {}
     try:
