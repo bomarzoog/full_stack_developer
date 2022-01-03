@@ -33,7 +33,23 @@
         </style>
     </head>
     <body>
+
+
         <div class="list-wrapper">
+            <h3>TODO LISTS</h3>
+
+            <form id="list_form" >
+               <label for="description_list">Create List:</label>
+       
+               <input type="text" id= "description_list" name="description_list">
+               
+               
+               <input type="submit" id="submit" value="Create"/>
+               
+               <div id="error" class="hidden" style="display:none;"> Something went wrong!</div>
+           </form>
+     
+           
             <ul id="lists">
                 {% for list in lists%}
                 <li> {{list.name }} </li>
@@ -42,7 +58,7 @@
         </div>
 
         <div class="todo-wrapper">
-        
+        <h3>TODO ITEMS</h3>
 
         <form id="form" >
              <h4>{{active_list.name}}</h4>
