@@ -31,6 +31,7 @@ class TodoList(db.Model):
     __tablename__='todolists'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
+    completed = db.Column(db.Boolean, nullable=False, default =False)
     todos = db.relationship('Todo', backref='list', lazy =True)
 
 
@@ -102,6 +103,20 @@ def check_completed(todo_id):
         db.session.close()
     return redirect(url_for('index'))
 
+
+@app.route ('/todo/<list_id>/set-completed', methods=['POST'])
+def check_completed(todo_id):
+    try:
+        completed = request.get_json()['completed']
+        print(completed)
+        todo_list =TodoList.query.get(list_id)
+        todo_list.completed = completed
+        db.session.commit()
+    except:
+        db.session.rollback()
+    finally:
+        db.session.close()
+    return redirect(url_for('index'))
 
 
 @app.route ('/todo/<todo_id>/delete', methods=['DELETE'])
