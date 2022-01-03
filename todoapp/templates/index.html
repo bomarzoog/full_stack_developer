@@ -140,7 +140,6 @@
             
             document.getElementById('form').onsubmit = function(e) {
                 e.preventDefault();
-                console.log(active_list);
                 fetch('/todo/create', {
                     method: 'POST',
                     body: JSON.stringify({
