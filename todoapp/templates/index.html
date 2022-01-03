@@ -73,7 +73,7 @@
             <div id="error" class="hidden" style="display:none;"> Something went wrong!</div>
         </form>
         
-        <h4>{{active_list.name}}</h4>
+        <h4 id="active_list">{{active_list.name}}</h4>
     
   
 
@@ -144,7 +144,7 @@
                     method: 'POST',
                     body: JSON.stringify({
                         'description': document.getElementById('description').value,
-                        'id': 1
+                        'id': {{active_list.id}}
                     }),
                     headers: {
                         'Content-Type': 'application/json',
