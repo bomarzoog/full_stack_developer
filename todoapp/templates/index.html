@@ -55,7 +55,7 @@
                 <li> <input class ='check-completed-list' type="checkbox" data-id = "{{list.id}}"} {% if list.completed %} checked {%
                     endif %} /><a href="/lists/{{list.id}}">  
                         {{list.name }} </a> 
-                    <button class ='closed' data-id = "{{list.id}}">&cross;</button>
+                    <button class ='closed-list' data-id = "{{list.id}}">&cross;</button>
                 </li>
                 {% endfor %}
             </ul>
@@ -93,6 +93,28 @@
     </div>
 
         <script>
+
+
+            const closeds_list =document.querySelectorAll('.closed-list')
+       
+            for (let i = 0; i<closeds_list.length;i++){
+
+                const xButton = closeds_list[i];
+                xButton.onclick=function(e){
+                    console.log('Event',e);
+                    const todoId_list = e.target.dataset['id']
+                    fetch('/list/'+todoId_list+'/delete', {
+                        method: 'DELETE'
+                    })
+                    .then(function(){
+                        document.getElementById('error').className='hidden';
+                    })
+                    .catch(function() {
+                        document.getElementById('error').className='';
+                    })
+                    
+                }
+            }
 
             const closeds =document.querySelectorAll('.closed')
        
