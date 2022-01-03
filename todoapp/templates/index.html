@@ -52,7 +52,7 @@
            
             <ul id="lists">
                 {% for list in lists%}
-                <li> <a href="/lists/{{list.id}}">  {{list.name }} </a> </li>
+                <li> <input class ='check-completed-list' type="checkbox" data-id = "{{list.id}}"} /><a href="/lists/{{list.id}}">  {{list.name }} </a> </li>
                 {% endfor %}
             </ul>
         </div>
@@ -136,6 +136,34 @@
                     })
                 }               
             }
+
+            const checkboxes_list = document.querySelectorAll('.check-completed-list');
+            for (let i = 0; i < checkboxes.length; i++) {
+                const checkbox_list = checkboxes_list[i];
+                checkbox.onchange = function (e){
+                    console.log('event',e);
+                    const newCompleted = e.target.checked;
+                    const todoId_list = e.target.dataset['id'];
+                    fetch('/todo/'+todoId_list+'/set-completed', {
+
+                        method: 'POST',
+                        body: JSON.stringify({
+
+                            'completed': newCompleted
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })
+                    .then(function(){
+                        document.getElementById('error').className='hidden';
+                    })
+                    .catch(function() {
+                        document.getElementById('error').className='';
+                    })
+                }               
+            }
+       
        
             
             document.getElementById('form').onsubmit = function(e) {
