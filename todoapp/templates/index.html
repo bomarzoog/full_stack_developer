@@ -36,14 +36,15 @@
         <div class="list-wrapper">
             <ul id="lists">
                 {% for list in lists%}
-                <li> {{ list.name }} </li>
+                <li> {{ href="/lists/{{ list.id}}" list.name }} </li>
                 {% endfor %}
             </ul>
         </div>
 
         <div class="todo-wrapper">
+        <h4>{{active_list.name}}</h4>
+
         <form id="form" >
-            
             <label for="description">Create a To-Do item</label>
            
          
