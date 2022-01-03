@@ -45,9 +45,10 @@ def create_todo():
         listID = request.get_json()['id']
         print(listID)
         todo =Todo(description=description)
-        list=TodoList.query.get(listID)
-        print(list)
-        todo.list
+        #list=TodoList.query.get(listID)
+        #print(list)
+        todo.list_id=listID
+        print(todo.list_id)
 
         db.session.add(todo)
         db.session.commit()
