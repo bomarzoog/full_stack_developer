@@ -44,7 +44,7 @@
                <input type="text" id= "description_list" name="description_list">
                
                
-               <input type="submit" id="submit" value="Create"/>
+               <input type="submit" id="submit_2" value="Create"/>
                
                <div id="error" class="hidden" style="display:none;"> Something went wrong!</div>
            </form>
@@ -163,35 +163,35 @@
                 document.getElementById('error').className = '';
             })
 
-
-            document.getElementById('form_list').onsubmit = function(e) {
-                e.preventDefault();
-                fetch('/list/create', {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        'name': document.getElementById('description_list').value
-                    }),
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-            })
-            .then(function (response){
-                return response.json();
-            })
-            .then(function(jsonResponse) {
-                console.log(jsonResponse);
-                const liItem = document.createElement('LI');
-                liItem.innerHTML = jsonResponse['description_list'];
-                document.getElementById('lists').appendChild(liItem);
-                document.getElementById('error').className = 'hidden';
-            })
-
-            .catch(function(){
-                document.getElementById('error').className = '';
-            })
-
-
         }
+
+
+        document.getElementById('form_list').onsubmit = function(e) {
+            e.preventDefault();
+            fetch('/list/create', {
+                method: 'POST',
+                body: JSON.stringify({
+                    'name': document.getElementById('description_list').value
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+        })
+        .then(function (response){
+            return response.json();
+        })
+        .then(function(jsonResponse) {
+            console.log(jsonResponse);
+            const liItem = document.createElement('LI');
+            liItem.innerHTML = jsonResponse['description_list'];
+            document.getElementById('lists').appendChild(liItem);
+            document.getElementById('error').className = 'hidden';
+        })
+
+        .catch(function(){
+            document.getElementById('error').className = '';
+        })
+    }
         </script>
         
         
