@@ -29,7 +29,7 @@
         </style>
     </head>
     <body>
-
+        <div>
         <form id="form" >
             <div>
                 <label for="description">Create a To-Do item</label>
@@ -42,13 +42,14 @@
             </div>
             <div id="error" class="hidden" style="display:none;"> Something went wrong!</div>
         </form>
-
+        </div>
+        <div>
         <ul id="lists">
             {% for list in lists%}
             <li> {{ list.name }} </li>
             {% endfor %}
-
         </ul>
+        </div>
 
         <ul id="todos">
             {% for d in todos%}
