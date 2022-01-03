@@ -43,8 +43,15 @@
             <div id="error" class="hidden" style="display:none;"> Something went wrong!</div>
         </form>
 
+        <ul id="lists">
+            {% for list in lists%}
+            <li> {{ list.name }} </li>
+            {% endfor %}
+
+        </ul>
+
         <ul id="todos">
-            {% for d in data%}
+            {% for d in todos%}
             <li><input class ='check-completed' type="checkbox" data-id = "{{d.id}}"{% if d.completed %} checked {%
                  endif %} />
                  {{d.description}} 
