@@ -105,7 +105,7 @@ def check_completed(todo_id):
 
 
 @app.route ('/todo/<list_id>/set-completed-list', methods=['POST'])
-def check_completed_list(todo_id):
+def check_completed_list(list_id):
     try:
         completed = request.get_json()['completed']
         print(completed)
