@@ -142,7 +142,8 @@
                 fetch('/todo/create', {
                     method: 'POST',
                     body: JSON.stringify({
-                        'description': document.getElementById('description').value
+                        'description': document.getElementById('description').value,
+                        'ActiveList': active_list.name
                     }),
                     headers: {
                         'Content-Type': 'application/json',
