@@ -63,7 +63,7 @@ def create_list():
     error = False
     body = {}
     try:
-        name = request.get_json()['description_list']
+        name = request.get_json()['name']
         todoList =TodoList(name=name)
         db.session.add(todoList)
         db.session.commit()
