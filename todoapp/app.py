@@ -104,7 +104,7 @@ def check_completed(todo_id):
     return redirect(url_for('index'))
 
 
-@app.route ('/todo/<list_id>/set-completed', methods=['POST'])
+@app.route ('/todo/<list_id>/set-completed-list', methods=['POST'])
 def check_completed_list(todo_id):
     try:
         completed = request.get_json()['completed']
