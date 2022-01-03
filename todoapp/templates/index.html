@@ -26,10 +26,14 @@
                 background-repeat:no-repeat;
                 border: none
             }
+            .todo-wrapper, .list-wrapper {
+                display: inline-block;
+                vertical-align: top;
+            }
         </style>
     </head>
     <body>
-        <div>
+        <div class="todo-wrapper">
         <form id="form" >
             <div>
                 <label for="description">Create a To-Do item</label>
@@ -43,7 +47,7 @@
             <div id="error" class="hidden" style="display:none;"> Something went wrong!</div>
         </form>
         </div>
-        <div>
+        <div class="list-wrapper">
         <ul id="lists">
             {% for list in lists%}
             <li> {{ list.name }} </li>
