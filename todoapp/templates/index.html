@@ -183,7 +183,7 @@
         .then(function(jsonResponse) {
             console.log(jsonResponse);
             const liItem = document.createElement('LI');
-            liItem.innerHTML = jsonResponse['description_list'];
+            liItem.innerHTML = jsonResponse['name'];
             document.getElementById('lists').appendChild(liItem);
             document.getElementById('error').className = 'hidden';
         })
