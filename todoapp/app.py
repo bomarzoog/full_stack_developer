@@ -133,7 +133,7 @@ def delete(todo_id):
     return jsonify({'success': True })
 
 @app.route ('/list/<list_id>/delete', methods=['DELETE'])
-def delete(list_id):
+def delete_list(list_id):
     try:
         todoList = TodoList.query.get(list_id)
         db.session.delete(todoList)
