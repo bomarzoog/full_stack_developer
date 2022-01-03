@@ -141,7 +141,7 @@
             const checkboxes_list = document.querySelectorAll('.check-completed-list');
             for (let i = 0; i < checkboxes_list.length; i++) {
                 const checkbox_list = checkboxes_list[i];
-                checkbox.onchange = function (e){
+                checkbox_list.onchange = function (e){
                     console.log('event',e);
                     const newCompleted = e.target.checked;
                     const todoId_list = e.target.dataset['id'];
