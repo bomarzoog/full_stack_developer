@@ -41,7 +41,8 @@ def create_todo():
     error = False
     body = {}
     try:
-        description = request.get_json()['description', 'name']
+        description = request.get_json()['description']
+        name = request.get_json()['name']
         todo =Todo(description=description)
         todo.list=TodoList(name=name)
         db.session.add(todo)
