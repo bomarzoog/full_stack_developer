@@ -40,16 +40,15 @@ def create_app(test_config=None):
 
         books = Book.query.all()
         formatted_books = [book.format() for book in books]
-        return jsonify(
+        result = jsonify(
             {
                 "success": True,
                 "books": formatted_books[start:end],
                 "total_books": len(formatted_books),
 
-            }
-
-
-        )
+            })
+        return result
+    
 
 
     # @TODO: Write a route that retrivies all books, paginated.
