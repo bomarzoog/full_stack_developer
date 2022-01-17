@@ -32,6 +32,26 @@ def create_app(test_config=None):
         )
         return response
 
+    @app.route('/books', mehods=["GET","POST"])
+    def get_books():
+        page = request.args.get("page", 1, type=int)
+        start = (page - 1) * BOOKS_PER_SHELF
+        end = start + BOOKS_PER_SHELF
+
+        books = Book.query.all()
+        formatted_books = [book.format() for book in books]
+        return jsonify(
+            {
+                "success": True,
+                "books": formatted_books[start:end],
+                "total_books": len(formatted_books),
+
+            }
+
+
+        )
+
+
     # @TODO: Write a route that retrivies all books, paginated.
     #         You can use the constant above to paginate by eight books.
     #         If you decide to change the number of books per page,
