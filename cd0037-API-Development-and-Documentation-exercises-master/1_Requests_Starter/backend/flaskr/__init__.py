@@ -54,7 +54,7 @@ def create_app(test_config=None):
         book = Book.query.filter(Book.id==book_id).first()
         print(book.rating)
         book.rating = request.get_json("rating")
-        book.upate()
+        book.update()
         result = jsonify(
             {
                 "success": True,
