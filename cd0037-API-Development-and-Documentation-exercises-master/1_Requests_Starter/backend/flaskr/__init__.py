@@ -65,8 +65,9 @@ def create_app(test_config=None):
 
     @app.route('/books/<int:book_id>', methods=["DELETE"])
     def deleteBook(book_id):
+        book = Book.query.filte(Book.id==book_id).first()
         try:
-            book = Book.query.filte(Book.id==book_id).firs()
+            
             book.delete()
             result = jsonify({
                 "success": True,
