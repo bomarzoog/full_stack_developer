@@ -63,7 +63,7 @@ def create_app(test_config=None):
         return result
     
 
-    @app.route('/books/<int:book_id>' methods=["DELETE"])
+    @app.route('/books/<int:book_id>', methods=["DELETE"])
     def deleteBook(book_id):
         try:
             book = Book.query.filte(Book.id==book_id).firs()
