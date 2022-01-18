@@ -52,7 +52,7 @@ def create_app(test_config=None):
     @app.route('/books/<int:book_id>', methods=["PATCH"])
     def changeRating(book_id):
         book = Book.query.filter(Book.id==book_id).first()
-        book.rating = request.json.get("rating")
+        book.rating = request.get_json("rating")
         result = jsonify(
             {
                 "success": True,
