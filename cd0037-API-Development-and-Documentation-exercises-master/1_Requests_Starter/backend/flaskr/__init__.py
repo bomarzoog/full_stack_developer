@@ -60,16 +60,26 @@ def create_app(test_config=None):
 
     @app.route('/books/<int:book_id>', methods=["PATCH"])
     def changeRating(book_id):
-        book = Book.query.filter(Book.id==book_id).first()
-        newRating = request.get_json("rating")
-        book.rating = newRating["rating"]
-        book.update()
-        result = jsonify(
-            {
-                "success": True,
+        try:
+            book = Book.query.filter(Book.id==book_id).one_or_none()
+            if book is None:
+                abort(404)
 
-            })
-        return result
+            newRating = request.get_json("rating")
+            if 'rating' in newRating:
+                book.rating = newRating["rating"]
+
+            book.update()
+            
+            result = jsonify(
+                {
+                    "success": True,
+
+                })
+            return result
+
+        except:
+            abort(400)
     
 
     @app.route('/books/<int:book_id>', methods=["DELETE"])
