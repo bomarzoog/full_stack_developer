@@ -33,7 +33,7 @@ def create_app(test_config=None):
         return response
 
     @app.route('/books', methods=["GET","POST"])
-    def get_books():
+    def getBooks():
         page = request.args.get("page", 1, type=int)
         start = (page - 1) * BOOKS_PER_SHELF
         end = start + BOOKS_PER_SHELF
@@ -48,7 +48,20 @@ def create_app(test_config=None):
 
             })
         return result
-    
+
+    @app.route('/books/<int:book_id>', methods=["PATCH"])
+    def changeRating(book_id):
+        book = Book.query.filter(Book.id=book_id).first()
+        book.rating = request.json.get("rating")
+        result = jsonify(
+            {
+                "success": True,
+
+            })
+        return result
+
+        
+
 
 
     # @TODO: Write a route that retrivies all books, paginated.
