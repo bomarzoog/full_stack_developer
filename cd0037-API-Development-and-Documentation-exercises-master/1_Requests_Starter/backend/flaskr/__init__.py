@@ -34,7 +34,7 @@ def create_app(test_config=None):
 
     @app.route('/books', methods=["GET"])
     def getBooks():
-        page = request.args.get("page", 1, type=int)
+        page = request.args.get('page', 1, type=int)
         print("Page number is {}".format(page))
         start = (page - 1) * BOOKS_PER_SHELF
         end = start + BOOKS_PER_SHELF
