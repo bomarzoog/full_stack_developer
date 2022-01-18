@@ -45,7 +45,7 @@ def create_app(test_config=None):
 
         print (formatted_books)
 
-        if (len(formatted_books) == 0):
+        if (len(formatted_books[start:end] == 0):
             abort(404)
 
         result = jsonify(
