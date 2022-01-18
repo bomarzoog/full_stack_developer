@@ -38,8 +38,16 @@ def create_app(test_config=None):
         start = (page - 1) * BOOKS_PER_SHELF
         end = start + BOOKS_PER_SHELF
 
-        books = Book.query.all()
+        books = Book.query.order_by(Book.id).all()
+        print(books)
+
         formatted_books = [book.format() for book in books]
+
+        print (formatted_books)
+
+        if len(formatted_books == 0):
+            abort(404)
+
         result = jsonify(
             {
                 "success": True,
