@@ -32,7 +32,7 @@ def create_app(test_config=None):
         )
         return response
 
-    @app.route('/books', methods=["GET","POST"])
+    @app.route('/books', methods=["GET"])
     def getBooks():
         page = request.args.get("page", 1, type=int)
         start = (page - 1) * BOOKS_PER_SHELF
@@ -77,6 +77,24 @@ def create_app(test_config=None):
         except:
             book.rollback()
 
+    
+    @app.route('/books', methods=["POST"])
+    def createBook():
+        try:
+            data = request.get_json("data")
+            newBook = Book(title = data['title'], author= data['author'], rating= data['rating'])
+            newBook.insert()
+            books = Book.query.all()
+            formatted_books = [book.format() for book in books]
+            result = jsonify(
+                {
+                    "success": True,
+                    "created": newBook.id,
+                    "total_books": len(formatted_books),
+                    })
+            return result
+        except:
+            return EnvironmentError
     
 
 
