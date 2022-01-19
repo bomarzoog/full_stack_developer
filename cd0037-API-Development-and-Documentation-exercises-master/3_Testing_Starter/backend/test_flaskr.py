@@ -29,6 +29,29 @@ class BookTestCase(unittest.TestCase):
             # create all tables
             self.db.create_all()
 
+
+    def test_paginated_books(self):
+        """Test _____________ """
+        res = self.client().get('/books')
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["success"], True)
+        self.assertTrue(data["total_books"])
+        self.assertTrue(len(data["books"]))
+    
+    def test_404_requesting_beyond_valid_page(self):
+        res =self.client().get('books?page=200', json={'rating': 1}
+        data = json.loads(res.data)
+
+        self.assertEqual(res.status_code, 404)
+        self.assertEqual(data["success"], False)
+        self.assertEqual(data["message"], 'resource not found')
+
+
+
+
+
     def tearDown(self):
         """Executed after reach test"""
         pass
