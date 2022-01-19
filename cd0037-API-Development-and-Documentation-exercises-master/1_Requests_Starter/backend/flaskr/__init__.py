@@ -14,6 +14,15 @@ BOOKS_PER_SHELF = 8
 #   - Make sure for each route that you're thinking through when to abort and with which kind of error
 #   - If you change any of the response body keys, make sure you update the frontend to correspond.
 
+def paginate_books(request, selection):
+    page = request.args.get('page', 1, type=int)
+    start = (page - 1) * BOOKS_PER_SHELF
+    end = start + BOOKS_PER_SHELF
+
+    books = [book.format() for book in selection]
+    current_books = books[start:end]
+
+    return current_books
 
 def create_app(test_config=None):
     # create and configure the app
@@ -34,25 +43,17 @@ def create_app(test_config=None):
 
     @app.route('/books', methods=["GET"])
     def getBooks():
-        page = request.args.get('page', 1, type=int)
-        print("Page number is {}".format(page))
-        start = (page - 1) * BOOKS_PER_SHELF
-        end = start + BOOKS_PER_SHELF
 
-        books = Book.query.order_by(Book.id).all()
-        print(books)
+        selection = Book.query.order_by(Book.id).all()
+        formatted_books = paginate_books(request, selection)
 
-        formatted_books = [book.format() for book in books]
-
-        print (formatted_books)
-
-        if (len(formatted_books[start:end]) == 0):
+        if (len(formatted_books) == 0):
             abort(404)
 
         result = jsonify(
             {
                 "success": True,
-                "books": formatted_books[start:end],
+                "books": formatted_books,
                 "total_books": len(formatted_books),
 
             })
@@ -70,7 +71,7 @@ def create_app(test_config=None):
                 book.rating = newRating["rating"]
 
             book.update()
-            
+
             result = jsonify(
                 {
                     "success": True,
@@ -84,17 +85,26 @@ def create_app(test_config=None):
 
     @app.route('/books/<int:book_id>', methods=["DELETE"])
     def deleteBook(book_id):
-        book = Book.query.filter(Book.id==book_id).first()
         try:
+            book = Book.query.filter(Book.id==book_id).one_or_none()
+
+            if book is None:
+                abort(404)
+
             
             book.delete()
+            selection = Book.query.order_by(Book.id).all()
+            formatted_books = paginate_books(request, selection)
             result = jsonify({
                 "success": True,
+                "deleted": book_id,
+                "books" : formatted_books,
+                "total_books": len(Book.query.all())
                 })
             return result
 
         except:
-            book.rollback()
+            abort(422)
 
     
     @app.route('/books', methods=["POST"])
@@ -109,11 +119,12 @@ def create_app(test_config=None):
                 {
                     "success": True,
                     "created": newBook.id,
+                    "books" : formatted_books,
                     "total_books": len(formatted_books),
                     })
             return result
         except:
-            return EnvironmentError
+            abort(422)
     
 
 
