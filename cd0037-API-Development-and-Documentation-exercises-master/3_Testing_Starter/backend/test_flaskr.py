@@ -58,7 +58,7 @@ class BookTestCase(unittest.TestCase):
         self.assertEqual(book.format()['rating'],3)
 
     def test_400_for_faild_update(self):
-        res = self.client().patch("/book/5")
+        res = self.client().patch("/books/5")
         data = json.loads(res.data)
         book = Book.query.filter(Book.id == 5).one_or_none()
 
