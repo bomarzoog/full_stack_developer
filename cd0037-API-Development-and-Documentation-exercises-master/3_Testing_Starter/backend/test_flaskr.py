@@ -49,7 +49,7 @@ class BookTestCase(unittest.TestCase):
         self.assertEqual(data["message"], 'resource not found')
 
     def test_update_book_rating(self):
-        res = self.client().patch('/book/5', json={'rating': 3})
+        res = self.client().patch('/books/5', json={'rating': 3})
         data = json.loads(res.data)
         book = Book.query.filter(Book.id == 5).one_or_none()
 
