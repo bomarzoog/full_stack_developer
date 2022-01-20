@@ -85,7 +85,7 @@ class BookTestCase(unittest.TestCase):
 
 
     def test_delete_book(self):
-        res = self.client().delete('/book/4')
+        res = self.client().delete('/books/4')
         data = json.loads(res.data)
         book = Book.query.filter(Book.id ==4).one_or_none()
 
