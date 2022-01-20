@@ -101,6 +101,18 @@ class BookTestCase(unittest.TestCase):
         data = json.loads(res.data)
         pass
 
+    def test_search_books(self):
+        res =self.client.get('/books')
+        data = json.loads(res.data)
+
+        book = Book.query.filter(Book.title.ilike('%boys%'))
+        
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data["success"], True)
+        self.assertTrue(data["books"])
+        self.assertTrue(data["total_books"])
+
+
 
 # Make the tests conveniently executable
 if __name__ == "__main__":
