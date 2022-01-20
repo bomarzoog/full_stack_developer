@@ -102,7 +102,7 @@ class BookTestCase(unittest.TestCase):
         pass
 
     def test_search_books(self):
-        res =self.client.get('/books')
+        res =self.client().get('/books')
         data = json.loads(res.data)
 
         book = Book.query.filter(Book.title.ilike('%boys%'))
