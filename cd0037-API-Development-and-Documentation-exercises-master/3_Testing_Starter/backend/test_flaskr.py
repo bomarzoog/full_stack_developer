@@ -55,7 +55,7 @@ class BookTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
-        self.assertEqual(book.format()['rating'],1)
+        self.assertEqual(book.format()['rating'],3)
 
     def test_400_for_faild_update(self):
         res = self.client().patch('/book/5', json={'rating': 3})
@@ -85,14 +85,14 @@ class BookTestCase(unittest.TestCase):
 
 
     def test_delete_book(self):
-        res = self.client().delete('/book/1')
+        res = self.client().delete('/book/4')
         data = json.loads(res.data)
-        book = Book.query.filter(Book.id == 1).one_or_none()
+        book = Book.query.filter(Book.id ==4).one_or_none()
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
         self.assertEqual(data['message'], 'bad request')
-        self.assertEqual(data['deleted'], 1)
+        self.assertEqual(data['deleted'], 4)
         self.assertTrue(data['total_books'])
         self.assertTrue(data['books'])
         self.assertEqual(book, None)
