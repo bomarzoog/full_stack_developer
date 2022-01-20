@@ -91,7 +91,6 @@ class BookTestCase(unittest.TestCase):
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
-        self.assertEqual(data['message'], 'bad request')
         self.assertEqual(data['deleted'], 6)
         self.assertTrue(data['total_books'])
         self.assertTrue(data['books'])
